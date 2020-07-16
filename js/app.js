@@ -4,6 +4,7 @@ addEventListener("DOMContentLoaded", () => {
     const result = document.querySelector("result")
     const width = 4;
     let squares = []
+
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
             square = document.createElement('div');
@@ -14,71 +15,93 @@ addEventListener("DOMContentLoaded", () => {
         generateRandomNumber();
         generateRandomNumber();
     }
+
     createBoard();
 
     function generateRandomNumber() {
         let randomNumber = Math.floor(Math.random() * squares.length)
-        if(squares[randomNumber].innerHTML == 0){
+        if (squares[randomNumber].innerHTML == 0) {
             squares[randomNumber].innerHTML = 2;
-        }else {
+        } else {
             generateRandomNumber();
         }
     }
 
-    function moveRight(){
+    function moveRight() {
         for (let i = 0; i < 16; i++) {
-            if(i%4 === 0){
+            if (i % 4 === 0) {
                 let totalOne = squares[i].innerHTML
-                let totalTwo = squares[i+1].innerHTML
-                let totalThree = squares[i+2].innerHTML
-                let totalFour = squares[i+3].innerHTML
-                let row =[parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
-                console.log(row)
+                let totalTwo = squares[i + 1].innerHTML
+                let totalThree = squares[i + 2].innerHTML
+                let totalFour = squares[i + 3].innerHTML
+                let row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
                 let filteredRow = row.filter(num => num)
-                console.log(filteredRow)
                 let missingSquares = 4 - filteredRow.length;
                 let zeros = Array(missingSquares).fill(0);
-                console.log(zeros)
-                console.log("===")
-                let newRow = [...zeros,...filteredRow]
-                console.log({newRow})
-
+                let newRow = [...zeros, ...filteredRow]
 
                 squares[i].innerHTML = newRow[0]
-                squares[i+1].innerHTML = newRow[1]
-                squares[i+2].innerHTML = newRow[2]
-                squares[i+3].innerHTML = newRow[3]
+                squares[i + 1].innerHTML = newRow[1]
+                squares[i + 2].innerHTML = newRow[2]
+                squares[i + 3].innerHTML = newRow[3]
             }
         }
     }
 
-    function moveLeft(){
+    function moveLeft() {
         for (let i = 0; i < 16; i++) {
-            if(i%4 === 0){
+            if (i % 4 === 0) {
                 let totalOne = squares[i].innerHTML
-                let totalTwo = squares[i+1].innerHTML
-                let totalThree = squares[i+2].innerHTML
-                let totalFour = squares[i+3].innerHTML
-                let row =[parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
-                console.log(row)
+                let totalTwo = squares[i + 1].innerHTML
+                let totalThree = squares[i + 2].innerHTML
+                let totalFour = squares[i + 3].innerHTML
+                let row = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
                 let filteredRow = row.filter(num => num)
-                console.log(filteredRow)
                 let missingSquares = 4 - filteredRow.length;
                 let zeros = Array(missingSquares).fill(0);
-                console.log(zeros)
-                console.log("===")
-                let newRow = [...filteredRow,...zeros]
-                console.log({newRow})
+                let newRow = [...filteredRow, ...zeros]
 
 
                 squares[i].innerHTML = newRow[0]
-                squares[i+1].innerHTML = newRow[1]
-                squares[i+2].innerHTML = newRow[2]
-                squares[i+3].innerHTML = newRow[3]
+                squares[i + 1].innerHTML = newRow[1]
+                squares[i + 2].innerHTML = newRow[2]
+                squares[i + 3].innerHTML = newRow[3]
             }
         }
     }
 
-    moveLeft()
+    function combineRow() {
+        for (let i = 0; i < 15; i++) {
+            if (squares[i].innerHTML === squares[i + 1].innerHTML) {
+                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i].innerHTML)
+                squares[i].innerHTML = totalTwoSquares;
+                squares[i + 1].innerHTML = 0
+            }
+        }
+    }
+
+    function control(e) {
+        if (e.keyCode === 39) {
+            keyRight()
+        }
+        else if (e.keyCode === 37) {
+            keyLeft()
+        }
+    }
+
+    document.addEventListener('keyup', control)
+
+    function keyRight() {
+        moveRight()
+        combineRow()
+        moveRight()
+        generateRandomNumber()
+    }
+    function keyLeft() {
+        moveLeft()
+        combineRow()
+        moveLeft()
+        generateRandomNumber()
+    }
 
 })
