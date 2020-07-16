@@ -12,6 +12,7 @@ addEventListener("DOMContentLoaded", () => {
             squares.push(square)
         }
         generateRandomNumber();
+        generateRandomNumber();
     }
     createBoard();
 
@@ -35,6 +36,10 @@ addEventListener("DOMContentLoaded", () => {
                 console.log(row)
                 let filteredRow = row.filter(num => num)
                 console.log(filteredRow)
+                let missingSquares = 4 - filteredRow.length;
+                let zeros = Array(missingSquares).fill(0);
+                console.log(zeros)
+                console.log("===")
             }
         }
     }
