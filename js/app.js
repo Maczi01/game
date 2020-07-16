@@ -81,7 +81,7 @@ addEventListener("DOMContentLoaded", () => {
             let missingSquares = 4 - filteredColumns.length;
             let zeros = Array(missingSquares).fill(0);
             let newColumn = [ ...zeros,...filteredColumns]
-            squares[i].innerHTML = newRow[0]
+            squares[i].innerHTML = newColumn[0]
             squares[i + (width)].innerHTML = newColumn[1]
             squares[i + (width*2)].innerHTML = newColumn[2]
             squares[i + (width*3)].innerHTML = newColumn[3]
@@ -99,37 +99,29 @@ addEventListener("DOMContentLoaded", () => {
             let missingSquares = 4 - filteredColumns.length;
             let zeros = Array(missingSquares).fill(0);
             let newColumn = [ ...filteredColumns,...zeros]
-            squares[i].innerHTML = newRow[0]
+            squares[i].innerHTML = newColumn[0]
             squares[i + (width)].innerHTML = newColumn[1]
             squares[i + (width*2)].innerHTML = newColumn[2]
             squares[i + (width*3)].innerHTML = newColumn[3]
         }
     }
 
+
     function combineRow() {
         for (let i = 0; i < 15; i++) {
             if (squares[i].innerHTML === squares[i + 1].innerHTML) {
-                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i].innerHTML)
-                squares[i].innerHTML = totalTwoSquares;
-                squares[i + 1].innerHTML = 0
-            }
-        }
-    }
-    function combineRow() {
-        for (let i = 0; i < 15; i++) {
-            if (squares[i].innerHTML === squares[i + 1].innerHTML) {
-                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i].innerHTML)
+                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = totalTwoSquares;
                 squares[i + 1].innerHTML = 0
             }
         }
     }
     function combineColumn() {
-        for (let i = 0; i < 15; i++) {
-            if (squares[i].innerHTML === squares[i + 1].innerHTML) {
-                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i].innerHTML)
+        for (let i = 0; i < 12; i++) {
+            if (squares[i].innerHTML === squares[i + width].innerHTML) {
+                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
                 squares[i].innerHTML = totalTwoSquares;
-                squares[i + 1].innerHTML = 0
+                squares[i + width].innerHTML = 0
             }
         }
     }
@@ -140,6 +132,12 @@ addEventListener("DOMContentLoaded", () => {
         }
         else if (e.keyCode === 37) {
             keyLeft()
+        }
+        else if (e.keyCode === 40) {
+            keyDown()
+        }
+        else if (e.keyCode === 38) {
+            keyUp()
         }
     }
 
@@ -155,6 +153,18 @@ addEventListener("DOMContentLoaded", () => {
         moveLeft()
         combineRow()
         moveLeft()
+        generateRandomNumber()
+    }
+    function keyDown() {
+        moveDown()
+        combineColumn()
+        moveDown()
+        generateRandomNumber()
+    }
+    function keyUp() {
+        moveUp()
+        combineColumn()
+        moveUp()
         generateRandomNumber()
     }
 
