@@ -16,11 +16,17 @@ addEventListener("DOMContentLoaded", () => {
     createBoard();
 
     function generateRandomNumber() {
-        randomNumber = Math.floor(Math.random() * squares.length)
-        if(squares[randomNumber] == 0){
+        let randomNumber = Math.floor(Math.random() * squares.length)
+        if(squares[randomNumber].innerHTML == 0){
             squares[randomNumber].innerHTML = 2;
         }else {
             generateRandomNumber();
+        }
+    }
+
+    function moveRight(){
+        for (let i = 0; i < 16; i++) {
+
         }
     }
 
