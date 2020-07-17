@@ -115,6 +115,7 @@ addEventListener("DOMContentLoaded", () => {
                 squares[i + 1].innerHTML = 0
             }
         }
+        checkIfWin()
     }
     function combineColumn() {
         for (let i = 0; i < 12; i++) {
@@ -124,6 +125,7 @@ addEventListener("DOMContentLoaded", () => {
                 squares[i + width].innerHTML = 0
             }
         }
+        checkIfWin()
     }
 
     function control(e) {
@@ -167,5 +169,12 @@ addEventListener("DOMContentLoaded", () => {
         moveUp()
         generateRandomNumber()
     }
-
+    function checkIfWin(){
+        for (let i = 0; i < squares.length; i++) {
+            if(squares[i].innerHTML == 16){
+                result.innerHTML = "You Win!"
+                document.removeEventListener('keyup', control)
+            }
+        }
+    }
 })
