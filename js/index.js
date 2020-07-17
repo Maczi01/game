@@ -116,7 +116,8 @@ addEventListener("DOMContentLoaded", () => {
             if (squares[i].innerHTML === squares[i + 1].innerHTML) {
                 let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = totals;
-                squares[i].className = "two";
+                // squares[i].className = "two";
+                squares[i].className = generateColor(totals);
                 squares[i + 1].innerHTML = 0
                 score += totals
                 scoreDisplay.innerHTML = score
@@ -125,13 +126,25 @@ addEventListener("DOMContentLoaded", () => {
         checkIfWin()
     }
 
+    function generateColor(totals){
+        switch (totals) {
+            case 2:
+                return "two"
+            case 4:
+                return "four"
+            case 8:
+                return "eight"
+            default:
+                return "zero"
+        }
+    }
 
     function combineColumn() {
         for (let i = 0; i < 12; i++) {
             if (squares[i].innerHTML === squares[i + width].innerHTML) {
                 let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
                 squares[i].innerHTML = totals;
-                squares[i].className = "two";
+                squares[i].className = generateColor(totals);
                 squares[i + width].innerHTML = 0
                 score += totals
                 scoreDisplay.innerHTML = score
