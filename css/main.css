@@ -266,14 +266,32 @@ textarea {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
-  height: 400px;
+  width: 420px;
+  height: 420px;
   background-color: crimson;
-
+  align-items: center;
+  justify-content: space-around;
 }
 
 
-.grid  div{
+/*.grid  div{*/
+/*  width: 100px;*/
+/*  height: 100px;*/
+/*  background-color: yellow;*/
+/*  font-size: 60px;*/
+/*  text-align: center;*/
+/*  font-weight: bold;*/
+/*}*/
+
+.zero{
+  width: 100px;
+  height: 100px;
+  background-color: cyan;
+  font-size: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+.two{
   width: 100px;
   height: 100px;
   background-color: yellow;

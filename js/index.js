@@ -1,4 +1,5 @@
 addEventListener("DOMContentLoaded", () => {
+
     const gridDisplay = document.querySelector('.grid');
     const scoreDisplay = document.querySelector("#score")
     const result = document.querySelector("result");
@@ -8,6 +9,7 @@ addEventListener("DOMContentLoaded", () => {
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
             square = document.createElement('div');
+            square.className = "zero"
             square.innerHTML = 0;
             gridDisplay.appendChild(square);
             squares.push(square)
@@ -95,7 +97,7 @@ addEventListener("DOMContentLoaded", () => {
             let totalTwo = squares[i+(width)].innerHTML
             let totalThree = squares[i+(width*2)].innerHTML
             let totalFour = squares[i+(width*3)].innerHTML
-            let columns = [parseInt(totalOne),parseInt(totalFour),parseInt(totalThree),parseInt(totalFour)]
+            let columns = [parseInt(totalOne),parseInt(totalTwo),parseInt(totalThree),parseInt(totalFour)]
             let filteredColumns = columns.filter(num => num)
             let missingSquares = 4 - filteredColumns.length;
             let zeros = Array(missingSquares).fill(0);
@@ -113,6 +115,7 @@ addEventListener("DOMContentLoaded", () => {
             if (squares[i].innerHTML === squares[i + 1].innerHTML) {
                 let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = totals;
+                squares[i].className = "two";
                 squares[i + 1].innerHTML = 0
                 score += totals
                 scoreDisplay.innerHTML = score
@@ -120,11 +123,14 @@ addEventListener("DOMContentLoaded", () => {
         }
         checkIfWin()
     }
+
+
     function combineColumn() {
         for (let i = 0; i < 12; i++) {
             if (squares[i].innerHTML === squares[i + width].innerHTML) {
                 let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
                 squares[i].innerHTML = totals;
+                squares[i].className = "two";
                 squares[i + width].innerHTML = 0
                 score += totals
                 scoreDisplay.innerHTML = score
