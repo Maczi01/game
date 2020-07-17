@@ -1,6 +1,6 @@
 addEventListener("DOMContentLoaded", () => {
     const gridDisplay = document.querySelector('.grid');
-    const scoreDisplay = document.querySelector("score")
+    const scoreDisplay = document.querySelector("#score")
     const result = document.querySelector("result")
     const width = 4;
     let squares = []
@@ -21,7 +21,8 @@ addEventListener("DOMContentLoaded", () => {
     function generateRandomNumber() {
         let randomNumber = Math.floor(Math.random() * squares.length)
         if (squares[randomNumber].innerHTML == 0) {
-            squares[randomNumber].innerHTML = 2;
+            squares[randomNumber].innerHTML = 2;;
+            checkForGameOver()
         } else {
             generateRandomNumber();
         }
@@ -172,9 +173,22 @@ addEventListener("DOMContentLoaded", () => {
     function checkIfWin(){
         for (let i = 0; i < squares.length; i++) {
             if(squares[i].innerHTML == 16){
-                result.innerHTML = "You Win!"
+                scoreDisplay.innerHTML = "You Win!"
                 document.removeEventListener('keyup', control)
             }
+        }
+    }
+
+    function checkForGameOver() {
+        let zeros = 0;
+        for (let i = 0; i < squares.length; i++) {
+            if(squares[i].innerHTML == 0){
+                zeros++;
+            }
+        }
+        if(zeros === 0){
+            scoreDisplay.innerHTML = " Game over!"
+            document.removeEventListener('keyup', control)
         }
     }
 })
