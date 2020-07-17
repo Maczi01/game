@@ -1,10 +1,10 @@
 addEventListener("DOMContentLoaded", () => {
     const gridDisplay = document.querySelector('.grid');
     const scoreDisplay = document.querySelector("#score")
-    const result = document.querySelector("result")
+    const result = document.querySelector("result");
     const width = 4;
     let squares = []
-
+    let score = 0
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
             square = document.createElement('div');
@@ -111,9 +111,11 @@ addEventListener("DOMContentLoaded", () => {
     function combineRow() {
         for (let i = 0; i < 15; i++) {
             if (squares[i].innerHTML === squares[i + 1].innerHTML) {
-                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
-                squares[i].innerHTML = totalTwoSquares;
+                let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
+                squares[i].innerHTML = totals;
                 squares[i + 1].innerHTML = 0
+                score += totals
+                scoreDisplay.innerHTML = score
             }
         }
         checkIfWin()
@@ -121,9 +123,11 @@ addEventListener("DOMContentLoaded", () => {
     function combineColumn() {
         for (let i = 0; i < 12; i++) {
             if (squares[i].innerHTML === squares[i + width].innerHTML) {
-                let totalTwoSquares = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
-                squares[i].innerHTML = totalTwoSquares;
+                let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
+                squares[i].innerHTML = totals;
                 squares[i + width].innerHTML = 0
+                score += totals
+                scoreDisplay.innerHTML = score
             }
         }
         checkIfWin()
