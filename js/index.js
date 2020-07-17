@@ -23,6 +23,7 @@ addEventListener("DOMContentLoaded", () => {
     function generateRandomNumber() {
         let randomNumber = Math.floor(Math.random() * squares.length)
         if (squares[randomNumber].innerHTML == 0) {
+            //TODO add function to generate 2 or 4
             squares[randomNumber].innerHTML = 2;;
             checkForGameOver()
         } else {
