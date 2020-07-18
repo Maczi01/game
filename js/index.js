@@ -24,7 +24,8 @@ addEventListener("DOMContentLoaded", () => {
         let randomNumber = Math.floor(Math.random() * squares.length)
         if (squares[randomNumber].innerHTML == 0) {
             //TODO add function to generate 2 or 4
-            squares[randomNumber].innerHTML = 2;;
+            squares[randomNumber].innerHTML = 2;
+            squares[randomNumber].className = generateColor(2)
             checkForGameOver()
         } else {
             generateRandomNumber();
@@ -117,7 +118,7 @@ addEventListener("DOMContentLoaded", () => {
                 let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = totals;
                 // squares[i].className = "two";
-                squares[i].className = generateColor(totals);
+                squares[i+1].className = generateColor(totals);
                 squares[i + 1].innerHTML = 0
                 score += totals
                 scoreDisplay.innerHTML = score
@@ -126,8 +127,8 @@ addEventListener("DOMContentLoaded", () => {
         checkIfWin()
     }
 
-    function generateColor(totals){
-        switch (totals) {
+    function generateColor(number){
+        switch (number) {
             case 2:
                 return "two"
             case 4:
