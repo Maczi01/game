@@ -332,20 +332,34 @@ textarea {
     font-weight: bold;
     animation: appear 0.3s ease;
 }
-._8 {
-    width: 100px;
-    height: 100px;
-    background-color: peru;
-    font-size: 60px;
-    text-align: center;
-    font-weight: bold;
-    animation: appear 0.3s ease;
-}
 ._16 {
     width: 100px;
     height: 100px;
     background-color: darkblue;
     color: cornsilk;
+    font-size: 60px;
+    text-align: center;
+    font-weight: bold;
+    animation: appear 0.3s ease;
+}
+
+._32 {
+    width: 100px;
+    height: 100px;
+    background-color: deeppink;
+    color: blueviolet;
+    font-size: 60px;
+    text-align: center;
+    font-weight: bold;
+    animation: appear 0.3s ease;
+}
+
+
+._64 {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    color: brown;
     font-size: 60px;
     text-align: center;
     font-weight: bold;

@@ -21,12 +21,22 @@ addEventListener("DOMContentLoaded", () => {
 
     createBoard();
 
+    function generateTwoOrFour() {
+        const number = Math.floor(Math.random() * 11);
+        if (number > 9) {
+            return 4;
+        } else
+            return 2
+    }
+
     function generateRandomNumber() {
-        let randomNumber = Math.floor(Math.random() * squares.length)
-        if (squares[randomNumber].innerHTML == 0) {
+        let randomSquare = Math.floor(Math.random() * squares.length)
+
+        if (squares[randomSquare].innerHTML == 0) {
             //TODO add function to generate 2 or 4
-            squares[randomNumber].innerHTML = 2;
-            squares[randomNumber].className = generateColor(2)
+            let randomNumber = generateTwoOrFour();
+            squares[randomSquare].innerHTML = randomNumber;
+            squares[randomSquare].className = generateColor(randomNumber)
             checkForGameOver()
         } else {
             generateRandomNumber();
@@ -238,7 +248,7 @@ addEventListener("DOMContentLoaded", () => {
 
     function checkIfWin() {
         for (let i = 0; i < squares.length; i++) {
-            if (squares[i].innerHTML == 16) {
+            if (squares[i].innerHTML == 64) {
                 scoreDisplay.innerHTML = "You Win!"
                 document.removeEventListener('keyup', control)
             }
