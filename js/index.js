@@ -6,11 +6,12 @@ addEventListener("DOMContentLoaded", () => {
     const width = 4;
     let squares = []
     let score = 0
+
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
             square = document.createElement('div');
-            square.className = "zero"
             square.innerHTML = 0;
+            square.className = generateColor(0)
             gridDisplay.appendChild(square);
             squares.push(square)
         }
@@ -46,9 +47,16 @@ addEventListener("DOMContentLoaded", () => {
                 let newRow = [...zeros, ...filteredRow]
 
                 squares[i].innerHTML = newRow[0]
+                squares[i].className = generateColor(newRow[0])
+
                 squares[i + 1].innerHTML = newRow[1]
+                squares[i + 1].className = generateColor(newRow[1])
+
                 squares[i + 2].innerHTML = newRow[2]
+                squares[i + 2].className = generateColor(newRow[2])
+
                 squares[i + 3].innerHTML = newRow[3]
+                squares[i + 3].className = generateColor(newRow[3])
             }
         }
     }
@@ -68,46 +76,69 @@ addEventListener("DOMContentLoaded", () => {
 
 
                 squares[i].innerHTML = newRow[0]
+                squares[i].className = generateColor(newRow[0])
+
                 squares[i + 1].innerHTML = newRow[1]
+                squares[i + 1].className = generateColor(newRow[1])
+
                 squares[i + 2].innerHTML = newRow[2]
+                squares[i + 2].className = generateColor(newRow[2])
+
                 squares[i + 3].innerHTML = newRow[3]
+                squares[i + 3].className = generateColor(newRow[3])
             }
         }
     }
-    
-    function moveDown(){
+
+    function moveDown() {
         for (let i = 0; i < 4; i++) {
             let totalOne = squares[i].innerHTML
-            let totalTwo = squares[i+(width)].innerHTML
-            let totalThree = squares[i+(width*2)].innerHTML
-            let totalFour = squares[i+(width*3)].innerHTML
-            let columns = [parseInt(totalOne),parseInt(totalTwo ),parseInt(totalThree),parseInt(totalFour)]
+            let totalTwo = squares[i + (width)].innerHTML
+            let totalThree = squares[i + (width * 2)].innerHTML
+            let totalFour = squares[i + (width * 3)].innerHTML
+            let columns = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
             let filteredColumns = columns.filter(num => num)
             let missingSquares = 4 - filteredColumns.length;
             let zeros = Array(missingSquares).fill(0);
-            let newColumn = [ ...zeros,...filteredColumns]
+            let newColumn = [...zeros, ...filteredColumns]
+
             squares[i].innerHTML = newColumn[0]
+            squares[i].className = generateColor(newColumn[0])
+
             squares[i + (width)].innerHTML = newColumn[1]
-            squares[i + (width*2)].innerHTML = newColumn[2]
-            squares[i + (width*3)].innerHTML = newColumn[3]
+            squares[i + (width)].className = generateColor(newColumn[1])
+
+            squares[i + (width * 2)].innerHTML = newColumn[2]
+            squares[i + (width * 2)].className = generateColor(newColumn[2])
+
+            squares[i + (width * 3)].innerHTML = newColumn[3]
+            squares[i + (width * 3)].className = generateColor(newColumn[3])
         }
     }
 
-    function moveUp(){
+    function moveUp() {
         for (let i = 0; i < 4; i++) {
             let totalOne = squares[i].innerHTML
-            let totalTwo = squares[i+(width)].innerHTML
-            let totalThree = squares[i+(width*2)].innerHTML
-            let totalFour = squares[i+(width*3)].innerHTML
-            let columns = [parseInt(totalOne),parseInt(totalTwo),parseInt(totalThree),parseInt(totalFour)]
+            let totalTwo = squares[i + (width)].innerHTML
+            let totalThree = squares[i + (width * 2)].innerHTML
+            let totalFour = squares[i + (width * 3)].innerHTML
+            let columns = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
             let filteredColumns = columns.filter(num => num)
             let missingSquares = 4 - filteredColumns.length;
             let zeros = Array(missingSquares).fill(0);
-            let newColumn = [ ...filteredColumns,...zeros]
+            let newColumn = [...filteredColumns, ...zeros]
+
             squares[i].innerHTML = newColumn[0]
+            squares[i].className = generateColor(newColumn[0])
+
             squares[i + (width)].innerHTML = newColumn[1]
-            squares[i + (width*2)].innerHTML = newColumn[2]
-            squares[i + (width*3)].innerHTML = newColumn[3]
+            squares[i + (width)].className = generateColor(newColumn[1])
+
+            squares[i + (width * 2)].innerHTML = newColumn[2]
+            squares[i + (width * 2)].className = generateColor(newColumn[2])
+
+            squares[i + (width * 3)].innerHTML = newColumn[3]
+            squares[i + (width * 3)].className = generateColor(newColumn[3])
         }
     }
 
@@ -115,26 +146,34 @@ addEventListener("DOMContentLoaded", () => {
     function combineRow() {
         for (let i = 0; i < 15; i++) {
             if (squares[i].innerHTML === squares[i + 1].innerHTML) {
-                let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
+                let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML)
                 squares[i].innerHTML = totals;
-                // squares[i].className = "two";
-                squares[i+1].className = generateColor(totals);
-                squares[i + 1].innerHTML = 0
-                score += totals
-                scoreDisplay.innerHTML = score
+                squares[i].className = generateColor(totals);
+                squares[i + 1].className = generateColor(totals);
+                squares[i + 1].innerHTML = 0;
+                score += totals;
+                scoreDisplay.innerHTML = score;
             }
-        }
+        };
         checkIfWin()
     }
 
-    function generateColor(number){
+    function generateColor(number) {
         switch (number) {
             case 2:
-                return "two"
+                return "_2"
             case 4:
-                return "four"
+                return "_4"
             case 8:
-                return "eight"
+                return "_8"
+            case 16:
+                return "_16"
+            case 32:
+                return "_32"
+            case 64:
+                return "_64"
+            case 128:
+                return "_128"
             default:
                 return "zero"
         }
@@ -143,10 +182,11 @@ addEventListener("DOMContentLoaded", () => {
     function combineColumn() {
         for (let i = 0; i < 12; i++) {
             if (squares[i].innerHTML === squares[i + width].innerHTML) {
-                let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
+                let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML)
                 squares[i].innerHTML = totals;
                 squares[i].className = generateColor(totals);
                 squares[i + width].innerHTML = 0
+                squares[i + width].className = generateColor(0);
                 score += totals
                 scoreDisplay.innerHTML = score
             }
@@ -157,14 +197,11 @@ addEventListener("DOMContentLoaded", () => {
     function control(e) {
         if (e.keyCode === 39) {
             keyRight()
-        }
-        else if (e.keyCode === 37) {
+        } else if (e.keyCode === 37) {
             keyLeft()
-        }
-        else if (e.keyCode === 40) {
+        } else if (e.keyCode === 40) {
             keyDown()
-        }
-        else if (e.keyCode === 38) {
+        } else if (e.keyCode === 38) {
             keyUp()
         }
     }
@@ -177,27 +214,31 @@ addEventListener("DOMContentLoaded", () => {
         moveRight()
         generateRandomNumber()
     }
+
     function keyLeft() {
         moveLeft()
         combineRow()
         moveLeft()
         generateRandomNumber()
     }
+
     function keyDown() {
         moveDown()
         combineColumn()
         moveDown()
         generateRandomNumber()
     }
+
     function keyUp() {
         moveUp()
         combineColumn()
         moveUp()
         generateRandomNumber()
     }
-    function checkIfWin(){
+
+    function checkIfWin() {
         for (let i = 0; i < squares.length; i++) {
-            if(squares[i].innerHTML == 16){
+            if (squares[i].innerHTML == 16) {
                 scoreDisplay.innerHTML = "You Win!"
                 document.removeEventListener('keyup', control)
             }
@@ -207,11 +248,11 @@ addEventListener("DOMContentLoaded", () => {
     function checkForGameOver() {
         let zeros = 0;
         for (let i = 0; i < squares.length; i++) {
-            if(squares[i].innerHTML == 0){
+            if (squares[i].innerHTML == 0) {
                 zeros++;
             }
         }
-        if(zeros === 0){
+        if (zeros === 0) {
             scoreDisplay.innerHTML = " Game over!"
             document.removeEventListener('keyup', control)
         }
