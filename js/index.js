@@ -3,6 +3,7 @@ addEventListener("DOMContentLoaded", () => {
     const gridDisplay = document.querySelector('.grid');
     const scoreDisplay = document.querySelector("#score")
     const result = document.querySelector("result");
+    const refresh = document.querySelector(".btn-menu")
     const width = 4;
     let squares = []
     let score = 0
@@ -19,7 +20,23 @@ addEventListener("DOMContentLoaded", () => {
         generateRandomNumber();
     }
 
+    refresh.addEventListener('click', refreshBoard)
+
+    function refreshBoard() {
+        gridDisplay.innerHTML = ""
+        for (let i = 0; i < width * width; i++) {
+            square = document.createElement('div');
+            square.innerHTML = 0;
+            square.className = generateColor(0)
+            gridDisplay.appendChild(square);
+            squares.push(square)
+        }
+        generateRandomNumber();
+        generateRandomNumber();
+    }
+
     createBoard();
+
 
     function generateTwoOrFour() {
         const number = Math.floor(Math.random() * 11);
@@ -33,7 +50,6 @@ addEventListener("DOMContentLoaded", () => {
         let randomSquare = Math.floor(Math.random() * squares.length)
 
         if (squares[randomSquare].innerHTML == 0) {
-            //TODO add function to generate 2 or 4
             let randomNumber = generateTwoOrFour();
             squares[randomSquare].innerHTML = randomNumber;
             squares[randomSquare].className = generateColor(randomNumber)
@@ -164,7 +180,8 @@ addEventListener("DOMContentLoaded", () => {
                 score += totals;
                 scoreDisplay.innerHTML = score;
             }
-        };
+        }
+        ;
         checkIfWin()
     }
 
