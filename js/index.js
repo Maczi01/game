@@ -5,8 +5,8 @@ addEventListener("DOMContentLoaded", () => {
     const result = document.querySelector("result");
     const refresh = document.querySelector(".btn-menu")
     const width = 4;
-    let squares = []
-    let score = 0
+    let squares = [];
+    let score = 0;
 
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
@@ -20,27 +20,24 @@ addEventListener("DOMContentLoaded", () => {
         generateRandomNumber();
     }
 
-    refresh.addEventListener('click', refreshBoard)
-
-    function refreshBoard() {
-        gridDisplay.innerHTML = ""
-        for (let i = 0; i < width * width; i++) {
-            square = document.createElement('div');
-            square.innerHTML = 0;
-            square.className = generateColor(0)
-            gridDisplay.appendChild(square);
-            squares.push(square)
-        }
-        generateRandomNumber();
-        generateRandomNumber();
-    }
-
     createBoard();
+
+    refresh.addEventListener('click', function () {
+        // gridDisplay.removeChild(square)
+        let nodeListOf = gridDisplay.querySelectorAll('div');
+        for (let i = 0; i < nodeListOf.length; i++) {
+            nodeListOf[i].remove()
+        }
+        console.log(nodeListOf)
+        // gridDisplay.removeChild('div')
+        // gridDisplay.innerHTML = ""
+        createBoard()
+    })
 
 
     function generateTwoOrFour() {
         const number = Math.floor(Math.random() * 11);
-        if (number > 9) {
+        if (number > 8) {
             return 4;
         } else
             return 2
@@ -167,7 +164,6 @@ addEventListener("DOMContentLoaded", () => {
             squares[i + (width * 3)].className = generateColor(newColumn[3])
         }
     }
-
 
     function combineRow() {
         for (let i = 0; i < 15; i++) {
