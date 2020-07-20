@@ -152,29 +152,25 @@ addEventListener("DOMContentLoaded", function () {
     generateRandomNumber();
   }
 
-  refresh.addEventListener('click', refreshBoard);
+  createBoard();
+  refresh.addEventListener('click', function () {
+    // gridDisplay.removeChild(square)
+    var nodeListOf = gridDisplay.querySelectorAll('div');
 
-  function refreshBoard() {
-    gridDisplay.innerHTML = "";
-
-    for (var i = 0; i < width * width; i++) {
-      square = document.createElement('div');
-      square.innerHTML = 0;
-      square.className = generateColor(0);
-      gridDisplay.appendChild(square);
-      squares.push(square);
+    for (var i = 0; i < nodeListOf.length; i++) {
+      nodeListOf[i].remove();
     }
 
-    generateRandomNumber();
-    generateRandomNumber();
-  }
+    console.log(nodeListOf); // gridDisplay.removeChild('div')
+    // gridDisplay.innerHTML = ""
 
-  createBoard();
+    createBoard();
+  });
 
   function generateTwoOrFour() {
     var number = Math.floor(Math.random() * 11);
 
-    if (number > 9) {
+    if (number > 8) {
       return 4;
     } else return 2;
   }
@@ -186,6 +182,7 @@ addEventListener("DOMContentLoaded", function () {
       var randomNumber = generateTwoOrFour();
       squares[randomSquare].innerHTML = randomNumber;
       squares[randomSquare].className = generateColor(randomNumber);
+      squares[randomSquare].classList.add("appear");
       checkForGameOver();
     } else {
       generateRandomNumber();
@@ -299,7 +296,9 @@ addEventListener("DOMContentLoaded", function () {
         squares[i].innerHTML = totals;
         squares[i].className = generateColor(totals);
         squares[i + 1].className = generateColor(totals);
-        squares[i + 1].innerHTML = 0;
+        squares[i + 1].classList.add("score-addition");
+        squares[i + 1].innerHTML = 0; // squares[i + 1].classList.add("missing");
+
         score += totals;
         scoreDisplay.innerHTML = score;
       }
@@ -343,6 +342,7 @@ addEventListener("DOMContentLoaded", function () {
         var totals = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
         squares[i].innerHTML = totals;
         squares[i].className = generateColor(totals);
+        squares[i].classList.add("score-addition");
         squares[i + width].innerHTML = 0;
         squares[i + width].className = generateColor(0);
         score += totals;
@@ -447,7 +447,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59756" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60755" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

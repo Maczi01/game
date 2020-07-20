@@ -283,6 +283,8 @@ textarea {
     align-items: center;
     justify-content: space-around;
     padding: 3px;
+    animation: add 0.3s ease;
+
 }
 
 
@@ -296,6 +298,7 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
+    animation: add 0.6s ease;
 }
 
 ._2{
@@ -305,7 +308,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: appear 0.3s ease;
     border-radius: 10px;
 
 }
@@ -316,7 +318,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: appear 0.3s ease;
     border-radius: 10px;
 
 }
@@ -327,7 +328,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: appear 0.3s ease;
 }
 ._16 {
     width: 100px;
@@ -337,7 +337,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: appear 0.3s ease;
     border-radius: 10px;
 
 }
@@ -350,7 +349,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: appear 0.3s ease;
 }
 
 
@@ -362,21 +360,41 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: appear 0.3s ease;
     border-radius: 10px;
 
 }
 
-@keyframes appear {
+.missing{
+    animation: add 1000ms ease-in;
+}
+
+/*@keyframes add {*/
+/*    0% {*/
+/*        !*top: 25px;*!*/
+/*        opacity: 1;*/
+/*    }*/
+
+/*    100% {*/
+/*        !*top: -50px;*!*/
+/*        opacity: 0.5;*/
+/*    }*/
+/*}*/
+
+@keyframes show {
     0% {
         opacity: 0;
-        top: 30px;
+        transform: scale(0);
     }
+
     100% {
         opacity: 1;
-        top: 0;
+        transform: scale(1);
     }
 }
+.appear{
+    animation: show 200ms ease-in;
+}
+
 .score-board{
     width: 420px;
     margin: 15px 0 15px 0;
@@ -433,8 +451,4 @@ button {
 }
 .btn-green:active .icon {
     transform: rotate(360deg) scale(1.2);
-}
-
-.menu{
-
 }

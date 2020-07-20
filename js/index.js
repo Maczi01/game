@@ -50,6 +50,7 @@ addEventListener("DOMContentLoaded", () => {
             let randomNumber = generateTwoOrFour();
             squares[randomSquare].innerHTML = randomNumber;
             squares[randomSquare].className = generateColor(randomNumber)
+            squares[randomSquare].classList.add("appear")
             checkForGameOver()
         } else {
             generateRandomNumber();
@@ -172,7 +173,10 @@ addEventListener("DOMContentLoaded", () => {
                 squares[i].innerHTML = totals;
                 squares[i].className = generateColor(totals);
                 squares[i + 1].className = generateColor(totals);
+                squares[i + 1].classList.add("score-addition")
+
                 squares[i + 1].innerHTML = 0;
+                // squares[i + 1].classList.add("missing");
                 score += totals;
                 scoreDisplay.innerHTML = score;
             }
@@ -208,6 +212,7 @@ addEventListener("DOMContentLoaded", () => {
                 let totals = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML)
                 squares[i].innerHTML = totals;
                 squares[i].className = generateColor(totals);
+                squares[i].classList.add("score-addition")
                 squares[i + width].innerHTML = 0
                 squares[i + width].className = generateColor(0);
                 score += totals
