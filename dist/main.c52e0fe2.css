@@ -288,7 +288,6 @@ textarea {
 }
 
 
-
 .zero {
     width: 100px;
     height: 100px;
@@ -298,10 +297,10 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-    animation: add 0.6s ease;
 }
 
-._2{
+
+._2 {
     width: 100px;
     height: 100px;
     background-color: yellow;
@@ -309,9 +308,11 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-
+    animation: pop 0.3s ease-in-out;
+    animation-fill-mode: forwards;
 }
-._4{
+
+._4 {
     width: 100px;
     height: 100px;
     background-color: white;
@@ -319,7 +320,29 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
+    animation-fill-mode: forwards;
+    position: relative;
+}
 
+.right{
+    position: relative;
+    animation: directionRight 5s 2;
+    animation-direction: alternate;
+}
+
+@keyframes directionRight{
+0%   {left: 0px; top: 0px;}
+25%  { right: 25px; top: 0px;}
+50%  { right: 50px; top: 0px;}
+75%  { right: 75px; top: 0px;}
+100% { right: 100px; top: 0px;}
+}
+@keyframes myfirst {
+    0%   {background: red; left: 0px; top: 0px;}
+    25%  {background: yellow; left: 200px; top: 0px;}
+    50%  {background: blue; left: 200px; top: 200px;}
+    75%  {background: green; left: 0px; top: 200px;}
+    100% {background: red; left: 0px; top: 0px;}
 }
 ._8 {
     width: 100px;
@@ -328,7 +351,10 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
+    animation: pop 0.3s ease-in-out;
+    animation-fill-mode: forwards;
 }
+
 ._16 {
     width: 100px;
     height: 100px;
@@ -338,7 +364,8 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-
+    animation: pop 0.3s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 ._32 {
@@ -349,6 +376,8 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
+    animation: pop 0.3s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 
@@ -361,24 +390,25 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-
 }
-
-.missing{
-    animation: add 1000ms ease-in;
-}
-
-/*@keyframes add {*/
-/*    0% {*/
-/*        !*top: 25px;*!*/
-/*        opacity: 1;*/
-/*    }*/
-
-/*    100% {*/
-/*        !*top: -50px;*!*/
-/*        opacity: 0.5;*/
-/*    }*/
+/*.pop {*/
+/*    animation: pop 0.3s ease-in-out;*/
+/*    animation-fill-mode: forwards;*/
 /*}*/
+@keyframes pop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    90% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
 @keyframes show {
     0% {
@@ -391,18 +421,20 @@ textarea {
         transform: scale(1);
     }
 }
-.appear{
+
+.appear {
     animation: show 200ms ease-in;
 }
 
-.score-board{
+.score-board {
     width: 420px;
     margin: 15px 0 15px 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.button-container{
+
+.button-container {
     width: 420px;
     margin: 15px 0 15px 0;
     display: flex;
@@ -411,7 +443,8 @@ textarea {
     background-color: violet;
 
 }
-.score-container{
+
+.score-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -423,6 +456,7 @@ textarea {
     color: white;
     font-size: 30px;
 }
+
 button {
     position: relative;
     width: 60px;
@@ -438,6 +472,7 @@ button {
     overflow: hidden;
     transition: transform 0.4s ease-in-out;
 }
+
 .btn-green .btn-menu {
     background: #1abc9c;
     border-bottom: 2px solid #12ab8d;
@@ -445,10 +480,11 @@ button {
 }
 
 
-.icon{
+.icon {
     width: 40px;
     height: 40px;
 }
+
 .btn-green:active .icon {
     transform: rotate(360deg) scale(1.2);
 }

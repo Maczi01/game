@@ -279,13 +279,16 @@ addEventListener("DOMContentLoaded", function () {
       var zeros = Array(missingSquares).fill(0);
       var newColumn = [].concat(_toConsumableArray(filteredColumns), _toConsumableArray(zeros));
       squares[i].innerHTML = newColumn[0];
-      squares[i].className = generateColor(newColumn[0]);
+      squares[i].className = generateColor(newColumn[0]); // squares[i].classList.add('pop')
+
       squares[i + width].innerHTML = newColumn[1];
-      squares[i + width].className = generateColor(newColumn[1]);
+      squares[i + width].className = generateColor(newColumn[1]); // squares[i + (width)].classList.add('pop')
+
       squares[i + width * 2].innerHTML = newColumn[2];
-      squares[i + width * 2].className = generateColor(newColumn[2]);
+      squares[i + width * 2].className = generateColor(newColumn[2]); // squares[i + (width * 2)].classList.add('pop')
+
       squares[i + width * 3].innerHTML = newColumn[3];
-      squares[i + width * 3].className = generateColor(newColumn[3]);
+      squares[i + width * 3].className = generateColor(newColumn[3]); // squares[i + (width * 3)].classList.add('pop')
     }
   }
 
@@ -295,10 +298,9 @@ addEventListener("DOMContentLoaded", function () {
         var totals = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML);
         squares[i].innerHTML = totals;
         squares[i].className = generateColor(totals);
-        squares[i + 1].className = generateColor(totals);
-        squares[i + 1].classList.add("score-addition");
-        squares[i + 1].innerHTML = 0; // squares[i + 1].classList.add("missing");
-
+        squares[i + 1].classList.add = generateColor(totals);
+        squares[i + 1].classList.add('right');
+        squares[i + 1].innerHTML = 0;
         score += totals;
         scoreDisplay.innerHTML = score;
       }
@@ -341,8 +343,7 @@ addEventListener("DOMContentLoaded", function () {
       if (squares[i].innerHTML === squares[i + width].innerHTML) {
         var totals = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
         squares[i].innerHTML = totals;
-        squares[i].className = generateColor(totals);
-        squares[i].classList.add("score-addition");
+        squares[i].className = "".concat(generateColor(totals), " pop");
         squares[i + width].innerHTML = 0;
         squares[i + width].className = generateColor(0);
         score += totals;
