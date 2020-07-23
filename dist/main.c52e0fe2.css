@@ -308,8 +308,6 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-    animation: pop 0.3s ease-in-out;
-    animation-fill-mode: forwards;
 }
 
 ._4 {
@@ -320,30 +318,8 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-    animation-fill-mode: forwards;
-    position: relative;
 }
 
-.right{
-    position: relative;
-    animation: directionRight 5s 2;
-    animation-direction: alternate;
-}
-
-@keyframes directionRight{
-0%   {left: 0px; top: 0px;}
-25%  { right: 25px; top: 0px;}
-50%  { right: 50px; top: 0px;}
-75%  { right: 75px; top: 0px;}
-100% { right: 100px; top: 0px;}
-}
-@keyframes myfirst {
-    0%   {background: red; left: 0px; top: 0px;}
-    25%  {background: yellow; left: 200px; top: 0px;}
-    50%  {background: blue; left: 200px; top: 200px;}
-    75%  {background: green; left: 0px; top: 200px;}
-    100% {background: red; left: 0px; top: 0px;}
-}
 ._8 {
     width: 100px;
     height: 100px;
@@ -351,8 +327,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: pop 0.3s ease-in-out;
-    animation-fill-mode: forwards;
 }
 
 ._16 {
@@ -364,8 +338,6 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-    animation: pop 0.3s ease-in-out;
-    animation-fill-mode: forwards;
 }
 
 ._32 {
@@ -376,8 +348,6 @@ textarea {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
-    animation: pop 0.3s ease-in-out;
-    animation-fill-mode: forwards;
 }
 
 
@@ -390,24 +360,6 @@ textarea {
     text-align: center;
     font-weight: bold;
     border-radius: 10px;
-}
-/*.pop {*/
-/*    animation: pop 0.3s ease-in-out;*/
-/*    animation-fill-mode: forwards;*/
-/*}*/
-@keyframes pop {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    90% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
 }
 
 @keyframes show {
@@ -487,6 +439,23 @@ button {
 
 .btn-green:active .icon {
     transform: rotate(360deg) scale(1.2);
+}
+
+.move {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: relative;
+    animation: myfirst 5s 2;
+    animation-direction: alternate;
+}
+
+@keyframes myfirst {
+    0%   {background: red; left: 0px; top: 0px;}
+    25%  {background: yellow; left: 00px; top: 25px;}
+    50%  {background: blue; left: 0px; top: 50px;}
+    75%  {background: green; left: 0px; top: 75px;}
+    100% {background: red; left: 0px; top: 100px;}
 }
 
 

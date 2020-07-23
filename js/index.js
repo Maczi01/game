@@ -152,8 +152,6 @@ addEventListener("DOMContentLoaded", () => {
             let zeros = Array(missingSquares).fill(0);
             let newColumn = [...filteredColumns, ...zeros]
 
-
-
             squares[i].innerHTML = newColumn[0]
             squares[i].className = generateColor(newColumn[0])
 
